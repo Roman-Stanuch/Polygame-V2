@@ -1,0 +1,13 @@
+# ninja log v5
+16	326	7553966118979312	CMakeFiles/app.dir/app/src/main.cpp.obj	d49dd14e3bc2ce2f
+12	314	7553962721211443	CMakeFiles/polygame.dir/engine/src/test.cpp.obj	b4259184b453e5a8
+241	278	7553966118354262	polygame.lib	b2de18486e5108b4
+343	462	7553969471308252	app.exe	93937bc596a15691
+2	126	7553971179810657	build.ninja	522da90cc59fc15c
+15	212	7553969468973663	engine/CMakeFiles/polygame.dir/src/utilities/glad.c.obj	201dff7dd881e410
+11	210	7553959698199574	CMakeFiles/polygame.dir/engine/src/glad.c.obj	9aa170288b3fc577
+13	241	7553966118041742	CMakeFiles/polygame.dir/engine/src/utilities/glad.c.obj	678bad98e594a40e
+12	311	7553969470067420	engine/CMakeFiles/polygame.dir/src/test.cpp.obj	c2f07279288436dc
+311	343	7553969470370682	engine/polygame.lib	ba296c93c30c6bf2
+23	312	7553970078803932	app/CMakeFiles/app.dir/src/main.cpp.obj	9bb5df6ea4579d76
+313	509	7553970080679077	app/app.exe	7029847f545cf901
