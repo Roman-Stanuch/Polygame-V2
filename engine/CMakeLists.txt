@@ -1,7 +1,4 @@
-add_library(polygame STATIC 
-    "src/test.cpp"
-    "src/utilities/glad.c"
-)
+add_library(polygame STATIC "src/window.cpp" "src/renderer.cpp" "src/utilities/glad.c" "src/renderer.h" "src/renderer.cpp" "src/polygame.cpp" "src/classes/shader.h" "src/classes/shader.cpp")
 
 target_link_libraries(polygame
     PRIVATE 
@@ -10,6 +7,7 @@ target_link_libraries(polygame
 
 target_include_directories(polygame
     PRIVATE 
-        src
-        includes
+    src
+    src/classes
+    includes
 )

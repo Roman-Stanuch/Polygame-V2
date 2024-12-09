@@ -77,9 +77,17 @@ build rebuild_cache: phony CMakeFiles\rebuild_cache.util
 
 build cmake_object_order_depends_target_polygame: phony || .
 
-build engine\CMakeFiles\polygame.dir\src\test.cpp.obj: CXX_COMPILER__polygame_unscanned_Debug D$:\Programming\C++\Polygame-V2\engine\src\test.cpp || cmake_object_order_depends_target_polygame
+build engine\CMakeFiles\polygame.dir\src\window.cpp.obj: CXX_COMPILER__polygame_unscanned_Debug D$:\Programming\C++\Polygame-V2\engine\src\window.cpp || cmake_object_order_depends_target_polygame
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -ID:\Programming\C++\Polygame-V2\engine\src -ID:\Programming\C++\Polygame-V2\engine\includes
+  INCLUDES = -ID:\Programming\C++\Polygame-V2\engine\src -ID:\Programming\C++\Polygame-V2\engine\src\classes -ID:\Programming\C++\Polygame-V2\engine\includes
+  OBJECT_DIR = engine\CMakeFiles\polygame.dir
+  OBJECT_FILE_DIR = engine\CMakeFiles\polygame.dir\src
+  TARGET_COMPILE_PDB = engine\CMakeFiles\polygame.dir\polygame.pdb
+  TARGET_PDB = engine\polygame.pdb
+
+build engine\CMakeFiles\polygame.dir\src\renderer.cpp.obj: CXX_COMPILER__polygame_unscanned_Debug D$:\Programming\C++\Polygame-V2\engine\src\renderer.cpp || cmake_object_order_depends_target_polygame
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
+  INCLUDES = -ID:\Programming\C++\Polygame-V2\engine\src -ID:\Programming\C++\Polygame-V2\engine\src\classes -ID:\Programming\C++\Polygame-V2\engine\includes
   OBJECT_DIR = engine\CMakeFiles\polygame.dir
   OBJECT_FILE_DIR = engine\CMakeFiles\polygame.dir\src
   TARGET_COMPILE_PDB = engine\CMakeFiles\polygame.dir\polygame.pdb
@@ -87,9 +95,25 @@ build engine\CMakeFiles\polygame.dir\src\test.cpp.obj: CXX_COMPILER__polygame_un
 
 build engine\CMakeFiles\polygame.dir\src\utilities\glad.c.obj: C_COMPILER__polygame_unscanned_Debug D$:\Programming\C++\Polygame-V2\engine\src\utilities\glad.c || cmake_object_order_depends_target_polygame
   FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -ID:\Programming\C++\Polygame-V2\engine\src -ID:\Programming\C++\Polygame-V2\engine\includes
+  INCLUDES = -ID:\Programming\C++\Polygame-V2\engine\src -ID:\Programming\C++\Polygame-V2\engine\src\classes -ID:\Programming\C++\Polygame-V2\engine\includes
   OBJECT_DIR = engine\CMakeFiles\polygame.dir
   OBJECT_FILE_DIR = engine\CMakeFiles\polygame.dir\src\utilities
+  TARGET_COMPILE_PDB = engine\CMakeFiles\polygame.dir\polygame.pdb
+  TARGET_PDB = engine\polygame.pdb
+
+build engine\CMakeFiles\polygame.dir\src\polygame.cpp.obj: CXX_COMPILER__polygame_unscanned_Debug D$:\Programming\C++\Polygame-V2\engine\src\polygame.cpp || cmake_object_order_depends_target_polygame
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
+  INCLUDES = -ID:\Programming\C++\Polygame-V2\engine\src -ID:\Programming\C++\Polygame-V2\engine\src\classes -ID:\Programming\C++\Polygame-V2\engine\includes
+  OBJECT_DIR = engine\CMakeFiles\polygame.dir
+  OBJECT_FILE_DIR = engine\CMakeFiles\polygame.dir\src
+  TARGET_COMPILE_PDB = engine\CMakeFiles\polygame.dir\polygame.pdb
+  TARGET_PDB = engine\polygame.pdb
+
+build engine\CMakeFiles\polygame.dir\src\classes\shader.cpp.obj: CXX_COMPILER__polygame_unscanned_Debug D$:\Programming\C++\Polygame-V2\engine\src\classes\shader.cpp || cmake_object_order_depends_target_polygame
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
+  INCLUDES = -ID:\Programming\C++\Polygame-V2\engine\src -ID:\Programming\C++\Polygame-V2\engine\src\classes -ID:\Programming\C++\Polygame-V2\engine\includes
+  OBJECT_DIR = engine\CMakeFiles\polygame.dir
+  OBJECT_FILE_DIR = engine\CMakeFiles\polygame.dir\src\classes
   TARGET_COMPILE_PDB = engine\CMakeFiles\polygame.dir\polygame.pdb
   TARGET_PDB = engine\polygame.pdb
 
@@ -101,7 +125,7 @@ build engine\CMakeFiles\polygame.dir\src\utilities\glad.c.obj: C_COMPILER__polyg
 #############################################
 # Link the static library engine\polygame.lib
 
-build engine\polygame.lib: CXX_STATIC_LIBRARY_LINKER__polygame_Debug engine\CMakeFiles\polygame.dir\src\test.cpp.obj engine\CMakeFiles\polygame.dir\src\utilities\glad.c.obj
+build engine\polygame.lib: CXX_STATIC_LIBRARY_LINKER__polygame_Debug engine\CMakeFiles\polygame.dir\src\window.cpp.obj engine\CMakeFiles\polygame.dir\src\renderer.cpp.obj engine\CMakeFiles\polygame.dir\src\utilities\glad.c.obj engine\CMakeFiles\polygame.dir\src\polygame.cpp.obj engine\CMakeFiles\polygame.dir\src\classes\shader.cpp.obj
   LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
   LINK_FLAGS = /machine:x64
   OBJECT_DIR = engine\CMakeFiles\polygame.dir
