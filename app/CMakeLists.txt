@@ -5,6 +5,7 @@ add_executable(app
 target_link_libraries(app
     PRIVATE 
         polygame
+        ../../../engine/libs/glfw3
 )
 
 target_include_directories(app
