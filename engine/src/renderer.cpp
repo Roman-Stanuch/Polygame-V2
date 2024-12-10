@@ -1,12 +1,11 @@
 #include "renderer.h"
 #include "shader.h"
+#include "resource_manager.h"
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
 
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp"
-
-#include "iostream"
 
 static uint32_t quad = 0;
 static Polygame::Shader* base_shader = nullptr;
@@ -64,6 +63,8 @@ namespace Polygame {
             base_shader->Use();
             base_shader->UMat4("projection", glm::ortho(0.0f, 1920.0f, 1080.0f, 0.0f, -1.0f, 1.0f));
             base_shader->UMat4("model", GetMatrix());
+            uint32_t tex = Resource::GetTexture("tex", "album_cover.png");
+            glBindTextureUnit(0, tex);
             glBindVertexArray(quad);
             glDrawArrays(GL_TRIANGLES, 0, 6);
         }
