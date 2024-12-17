@@ -1,11 +1,16 @@
 #include "polygame.h"
 #include "renderer.h"
+#include "object.h"
+#include "window.h"
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
 
 #include <iostream>
+#include <vector>
 
 namespace Polygame {
+	static std::vector<Object> objects;
+		
 	void Init() {
 		Window::CreateWindow(1920, 1080, false);
 		Renderer::Init();
@@ -16,14 +21,28 @@ namespace Polygame {
 		Renderer::Init();
 	}
 
+	void Start()
+	{
+		Tick();
+	}
+
 	void Tick()
 	{
 		glfwPollEvents();
+
+		for (Object& object : objects) {
+			object.Tick(1.0);
+		}
+
 		Renderer::Render();
 		Window::SwapBuffers();
+
+		if (Window::IsWindowOpen()) {
+			Tick();
+		}
 	}
 
-	void Deinit()
+	void End()
 	{
 		if (glGetError() != GL_NO_ERROR) {
 			std::cout << "OpenGL Error Code: " << glGetError() << std::endl;
@@ -36,5 +55,10 @@ namespace Polygame {
 	void SetBackgroundColor(float red, float green, float blue, float alpha)
 	{
 		glClearColor(red, green, blue, alpha);
+	}
+
+	void AddObject(const Object& object)
+	{
+		objects.push_back(object);
 	}
 }

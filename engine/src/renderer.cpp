@@ -1,17 +1,21 @@
 #include "renderer.h"
 #include "shader.h"
 #include "resource_manager.h"
+#include "utilities/draw_info.h"
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
 
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp"
 
-static uint32_t quad = 0;
-static Polygame::Shader* base_shader = nullptr;
+#include <queue>
 
 namespace Polygame {
     namespace Renderer {
+        static uint32_t quad = 0;
+        static std::queue<DrawInfo> render_queue;
+        static Polygame::Shader* base_shader = nullptr;
+
         void Init() {
             glClearColor(1.f, 0.f, 1.f, 1.0f);
 
@@ -47,13 +51,17 @@ namespace Polygame {
             glDeleteVertexArrays(1, &quad);
         }
 
-        glm::mat4 GetMatrix() {
+        void AddDrawObject(const DrawInfo& info) {
+            render_queue.push(info);
+        }
+
+        glm::mat4 DrawInfoToMatrix(const DrawInfo& draw_info) {
             glm::mat4 model = glm::mat4(1.0f);
-            model = glm::translate(model, glm::vec3(0, 0, 0));
-            model = glm::rotate(model, glm::radians(0.f), glm::vec3(1.0f, 0.0f, 0.0f));
-            model = glm::rotate(model, glm::radians(0.f), glm::vec3(0.0f, 1.0f, 0.0f));
-            model = glm::rotate(model, glm::radians(0.f), glm::vec3(0.0f, 0.0f, 1.0f));
-            model = glm::scale(model, glm::vec3(30, 30, 0));
+            model = glm::translate(model, draw_info.pos);
+            model = glm::rotate(model, glm::radians(draw_info.rot.x), glm::vec3(1.0f, 0.0f, 0.0f));
+            model = glm::rotate(model, glm::radians(draw_info.rot.y), glm::vec3(0.0f, 1.0f, 0.0f));
+            model = glm::rotate(model, glm::radians(draw_info.rot.z), glm::vec3(0.0f, 0.0f, 1.0f));
+            model = glm::scale(model, draw_info.scale);
             return model;
         }
 
@@ -62,11 +70,16 @@ namespace Polygame {
 
             base_shader->Use();
             base_shader->UMat4("projection", glm::ortho(0.0f, 1920.0f, 1080.0f, 0.0f, -1.0f, 1.0f));
-            base_shader->UMat4("model", GetMatrix());
-            uint32_t tex = Resource::GetTexture("tex", "album_cover.png");
-            glBindTextureUnit(0, tex);
-            glBindVertexArray(quad);
-            glDrawArrays(GL_TRIANGLES, 0, 6);
+
+            while (render_queue.size() > 0) {
+                const DrawInfo& sprite_info = render_queue.front();
+                base_shader->UMat4("model", DrawInfoToMatrix(sprite_info));
+                uint32_t tex = Resource::GetTexture(sprite_info.texture_name, sprite_info.texture_path);
+                glBindTextureUnit(0, tex);
+                glBindVertexArray(quad);
+                glDrawArrays(GL_TRIANGLES, 0, 6);
+                render_queue.pop();
+            }
         }
     }
 }

@@ -11,4 +11,6 @@ target_link_libraries(app
 target_include_directories(app
     PRIVATE 
         ${PROJECT_SOURCE_DIR}/engine/src
+        ${PROJECT_SOURCE_DIR}/engine/src/classes
+        ${PROJECT_SOURCE_DIR}/engine/includes
 )
