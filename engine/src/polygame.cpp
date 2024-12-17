@@ -7,10 +7,11 @@
 
 #include <iostream>
 #include <vector>
+#include <memory>
 
 namespace Polygame {
-	static std::vector<Object> objects;
-		
+	static std::vector<std::shared_ptr<Object>> objects;
+
 	void Init() {
 		Window::CreateWindow(1920, 1080, false);
 		Renderer::Init();
@@ -30,8 +31,13 @@ namespace Polygame {
 	{
 		glfwPollEvents();
 
-		for (Object& object : objects) {
-			object.Tick(1.0);
+		for (int i = 0; i < objects.size(); i++) {
+			auto& object = objects[i];
+			object->Tick(1.0);
+
+			if (object->ShouldDelete()) {
+				objects.erase(objects.begin() + i);
+			}
 		}
 
 		Renderer::Render();
@@ -57,7 +63,7 @@ namespace Polygame {
 		glClearColor(red, green, blue, alpha);
 	}
 
-	void AddObject(const Object& object)
+	void AddObject(std::shared_ptr<Object> object)
 	{
 		objects.push_back(object);
 	}

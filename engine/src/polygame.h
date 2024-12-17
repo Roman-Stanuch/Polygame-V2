@@ -1,6 +1,7 @@
 #pragma once
 
 #include <stdint.h>
+#include <memory>
 
 namespace Polygame {
 	class Object;
@@ -13,5 +14,6 @@ namespace Polygame {
 	void End();
 
 	void SetBackgroundColor(float red, float green, float blue, float alpha);
-	void AddObject(const Object& object);
+
+	void AddObject(std::shared_ptr<Object> object);
 }

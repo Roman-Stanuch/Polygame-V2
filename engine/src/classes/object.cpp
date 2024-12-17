@@ -12,4 +12,14 @@ namespace Polygame {
 	{
 		Renderer::AddDrawObject(m_draw_info);
 	}
+
+	void Object::SetPosition(glm::vec3 position)
+	{
+		m_draw_info.pos = position;
+	}
+
+	bool Object::ShouldDelete()
+	{
+		return m_should_delete;
+	}
 }

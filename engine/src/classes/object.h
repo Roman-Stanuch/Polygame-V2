@@ -8,7 +8,12 @@ namespace Polygame {
 		Object();
 		virtual void Tick(double deltaTime);
 
+		void SetPosition(glm::vec3 position);
+
+		bool ShouldDelete();
+
 	private:
 		DrawInfo m_draw_info;
+		bool m_should_delete = false;
 	};
 }

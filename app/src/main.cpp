@@ -6,8 +6,10 @@ int main() {
 
 	Polygame::SetBackgroundColor(0.8, 0.8, 0.9, 1.0);
 
-	Polygame::Object test;
-	Polygame::AddObject(test);
+	if (true) {
+		auto test = std::make_shared<Polygame::Object>();
+		Polygame::AddObject(test);
+	}
 
 	Polygame::Start();
 	Polygame::End();
