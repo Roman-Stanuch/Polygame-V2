@@ -65,6 +65,26 @@ namespace Polygame {
 			return !(currentWindow == nullptr);
 		}
 
+		bool GetKeyDown(const uint32_t key)
+		{
+			if (currentWindow == nullptr) return false;
+			return glfwGetKey(currentWindow, key) == GLFW_PRESS;
+		}
+
+		bool GetMouseButtonDown(const uint8_t button)
+		{
+			if (currentWindow == nullptr) return false;
+			return glfwGetMouseButton(currentWindow, button) == GLFW_PRESS;
+		}
+
+		glm::vec2 GetMousePosition()
+		{
+			if (currentWindow == nullptr) return glm::vec2(0.f, 0.f);
+			double xpos, ypos;
+			glfwGetCursorPos(currentWindow, &xpos, &ypos);
+			return glm::vec2(xpos, ypos);
+		}
+
 		uint32_t GetWindowWidth()
 		{
 			return CURRENT_WIDTH;

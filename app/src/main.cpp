@@ -1,13 +1,13 @@
 #include "polygame.h"
-#include "object.h"
+#include "gameplay/player.h"
 
 int main() {
 	Polygame::Init(1920, 1080, false);
 
-	Polygame::SetBackgroundColor(0.8, 0.8, 0.9, 1.0);
+	Polygame::SetBackgroundColor(0.8f, 0.8f, 0.9f, 1.0f);
 
 	if (true) {
-		auto test = std::make_shared<Polygame::Object>();
+		auto test = std::make_shared<Polygame::Gameplay::Player>();
 		Polygame::AddObject(test);
 	}
 

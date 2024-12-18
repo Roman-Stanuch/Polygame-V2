@@ -9,7 +9,9 @@ namespace Polygame {
 		virtual void Tick(double deltaTime);
 
 		void SetPosition(glm::vec3 position);
+		void Move(glm::vec3 direction, float distance);
 
+		void Delete();
 		bool ShouldDelete();
 
 	private:
