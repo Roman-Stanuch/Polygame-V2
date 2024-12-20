@@ -9,6 +9,7 @@
 #include "glm/gtc/type_ptr.hpp"
 
 #include <queue>
+#include <iostream>
 
 namespace Polygame {
     namespace Renderer {

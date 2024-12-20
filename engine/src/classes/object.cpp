@@ -18,6 +18,11 @@ namespace Polygame {
 		m_draw_info.pos = position;
 	}
 
+	glm::vec3 Object::GetPosition() const
+	{
+		return m_draw_info.pos;
+	}
+
 	void Object::Move(glm::vec3 direction, float distance)
 	{
 		m_draw_info.pos += (direction * distance);

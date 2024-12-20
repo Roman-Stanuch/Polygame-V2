@@ -24,13 +24,16 @@ namespace Polygame {
 
 	void Start()
 	{
-		Tick();
+		while (Window::IsWindowOpen())
+		{
+			Tick();
+		}
 	}
 
 	void Tick()
 	{
 		glfwPollEvents();
-
+		
 		for (int i = 0; i < objects.size(); i++) {
 			auto& object = objects[i];
 			object->Tick(1.0);
@@ -42,10 +45,6 @@ namespace Polygame {
 
 		Renderer::Render();
 		Window::SwapBuffers();
-
-		if (Window::IsWindowOpen()) {
-			Tick();
-		}
 	}
 
 	void End()
