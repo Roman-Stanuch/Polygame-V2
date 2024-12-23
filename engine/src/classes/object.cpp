@@ -6,6 +6,7 @@ namespace Polygame {
 		m_draw_info.scale = glm::vec3(100.f, 100.f, 100.f);
 		m_draw_info.texture_name = "tex";
 		m_draw_info.texture_path = "album_cover.png";
+		m_draw_info.color = glm::vec3(0.f, 0.f, 0.f);
 	}
 
 	void Object::Tick(double deltaTime)

@@ -5,6 +5,7 @@
 
 #include <iostream>
 #include <unordered_map>
+#include <string>
 
 static std::unordered_map<const char*, uint32_t> TextureMap;
 static char* path_to_assets = "../../../../app/assets/";
@@ -15,6 +16,10 @@ namespace Polygame {
 			// Return the texture if already loaded
 			if (TextureMap.find(name) != TextureMap.end())
 				return TextureMap[name];
+
+			// Return empty texture if requested (0 means identical)
+			if (strcmp("color", name) == 0)
+				return 0;
 
 			// Else, load the texture and put it in TextureMap
 			uint32_t textureID;

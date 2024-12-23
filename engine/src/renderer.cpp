@@ -75,6 +75,7 @@ namespace Polygame {
             while (render_queue.size() > 0) {
                 const DrawInfo& sprite_info = render_queue.front();
                 base_shader->UMat4("model", DrawInfoToMatrix(sprite_info));
+                base_shader->U3f("color_override", sprite_info.color);
                 uint32_t tex = Resource::GetTexture(sprite_info.texture_name, sprite_info.texture_path);
                 glBindTextureUnit(0, tex);
                 glBindVertexArray(quad);
