@@ -10,6 +10,7 @@
 
 #include <queue>
 #include <iostream>
+#include <cstring>
 
 namespace Polygame {
     namespace Renderer {
@@ -66,6 +67,17 @@ namespace Polygame {
             return model;
         }
 
+        uint32_t GetTextureFromDrawInfo(const DrawInfo& info) {
+            if (strcmp("", info.texture_path)) {
+                // Texture source has been set
+                return Resource::GetTexture(info.texture_name, info.texture_path);
+            }
+            else {
+                // Texture source not set, return blank texture
+                return 0;
+            }
+        }
+
         void Render() {
             glClear(GL_COLOR_BUFFER_BIT);
 
@@ -76,7 +88,7 @@ namespace Polygame {
                 const DrawInfo& sprite_info = render_queue.front();
                 base_shader->UMat4("model", DrawInfoToMatrix(sprite_info));
                 base_shader->U3f("color_override", sprite_info.color);
-                uint32_t tex = Resource::GetTexture(sprite_info.texture_name, sprite_info.texture_path);
+                uint32_t tex = GetTextureFromDrawInfo(sprite_info);
                 glBindTextureUnit(0, tex);
                 glBindVertexArray(quad);
                 glDrawArrays(GL_TRIANGLES, 0, 6);

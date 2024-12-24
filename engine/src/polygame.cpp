@@ -9,6 +9,9 @@
 #include <vector>
 #include <memory>
 
+static float last_time = 0.f;
+static float delta_time = 0.f;
+
 namespace Polygame {
 	static std::vector<std::shared_ptr<Object>> objects;
 
@@ -32,11 +35,12 @@ namespace Polygame {
 
 	void Tick()
 	{
+		delta_time = GetDeltaTime();
 		glfwPollEvents();
 		
 		for (int i = 0; i < objects.size(); i++) {
 			auto& object = objects[i];
-			object->Tick(1.0);
+			object->Tick(delta_time);
 
 			if (object->ShouldDelete()) {
 				objects.erase(objects.begin() + i);
@@ -55,6 +59,13 @@ namespace Polygame {
 
 		Renderer::Deinit();
 		Window::CloseWindow();
+	}
+
+	float GetDeltaTime() {
+		float currentTime = glfwGetTime();
+		float delta = currentTime - last_time;
+		last_time = currentTime;
+		return delta;
 	}
 
 	void SetBackgroundColor(float red, float green, float blue, float alpha)

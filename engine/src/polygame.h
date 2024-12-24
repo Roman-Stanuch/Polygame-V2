@@ -16,4 +16,6 @@ namespace Polygame {
 	void SetBackgroundColor(float red, float green, float blue, float alpha);
 
 	void AddObject(std::shared_ptr<Object> object);
+
+	float GetDeltaTime();
 }

@@ -11,17 +11,20 @@ namespace Polygame {
 
 		class Player : public Object {
 		public:
-			virtual void Tick(double deltaTime) override;
+			virtual void Tick(float delta_time) override;
 
 			void SetSpeed(float speed);
 			void SetMovementType(const EMovementType new_type);
 
 		private:
-			float m_speed = 5.f;
 			EMovementType m_movement_type = EMovementType::EMT_Default;
+			float m_speed = 1000.f;
+			float m_jump_force = 3.f;
+			bool m_falling = false;
+			float m_falling_time = 0.f;
 			
-			void DefaultMove();
-			void PhysicsMove();
+			void DefaultMove(float delta_time);
+			void PhysicsMove(float delta_time);
 		};
 	}
 }

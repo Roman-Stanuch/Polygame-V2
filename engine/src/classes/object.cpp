@@ -9,7 +9,7 @@ namespace Polygame {
 		m_draw_info.color = glm::vec3(0.f, 0.f, 0.f);
 	}
 
-	void Object::Tick(double deltaTime)
+	void Object::Tick(float delta_time)
 	{
 		Renderer::AddDrawObject(m_draw_info);
 	}
