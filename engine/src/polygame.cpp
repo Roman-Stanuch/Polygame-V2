@@ -62,7 +62,7 @@ namespace Polygame {
 	}
 
 	float GetDeltaTime() {
-		float currentTime = glfwGetTime();
+		float currentTime = (float)glfwGetTime();
 		float delta = currentTime - last_time;
 		last_time = currentTime;
 		return delta;

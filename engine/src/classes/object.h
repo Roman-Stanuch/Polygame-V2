@@ -6,6 +6,7 @@ namespace Polygame {
 	class Object {
 	public:
 		Object();
+		virtual ~Object() {}
 		virtual void Tick(float delta_time);
 
 		void SetPosition(glm::vec3 position);

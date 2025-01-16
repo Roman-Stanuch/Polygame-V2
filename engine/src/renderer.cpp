@@ -17,6 +17,7 @@ namespace Polygame {
         static uint32_t quad = 0;
         static std::queue<DrawInfo> render_queue;
         static Polygame::Shader* base_shader = nullptr;
+        static DrawInfo background_draw_info;
 
         void Init() {
             glClearColor(1.f, 0.f, 1.f, 1.0f);
@@ -83,7 +84,7 @@ namespace Polygame {
 
             base_shader->Use();
             base_shader->UMat4("projection", glm::ortho(0.0f, 1920.0f, 1080.0f, 0.0f, -1.0f, 1.0f));
-
+            
             while (render_queue.size() > 0) {
                 const DrawInfo& sprite_info = render_queue.front();
                 base_shader->UMat4("model", DrawInfoToMatrix(sprite_info));
