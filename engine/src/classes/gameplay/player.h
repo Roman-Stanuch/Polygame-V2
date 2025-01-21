@@ -11,6 +11,8 @@ namespace Polygame {
 
 		class Player : public Object {
 		public:
+			Player() : Object() {}
+			Player(const DrawInfo& draw_info) : Object(draw_info) {}
 			virtual void Tick(float delta_time) override;
 
 			void SetSpeed(float speed);

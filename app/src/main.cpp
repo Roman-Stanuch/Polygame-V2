@@ -1,5 +1,6 @@
 #include "polygame.h"
 #include "gameplay/player.h"
+#include <iostream>
 
 using namespace Polygame;
 
@@ -9,8 +10,12 @@ int main() {
 	Polygame::SetBackgroundColor(0.8f, 0.8f, 0.9f, 1.0f);
 
 	if (true) {
+		DrawInfo new_draw_info;
+		new_draw_info.scale = glm::vec3(100.f, 100.f, 100.f);
+		new_draw_info.texture_name = "tex";
+		new_draw_info.texture_path = "album_cover.png";
+		new_draw_info.color = glm::vec3(0.f, 0.f, 0.f);
 		auto test = std::make_shared<Gameplay::Player>();
-		test->SetMovementType(Gameplay::EMovementType::EMT_Physics);
 		Polygame::AddObject(test);
 	}
 

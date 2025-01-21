@@ -7,28 +7,27 @@
 
 #include <iostream>
 #include <vector>
-#include <memory>
 
 static float last_time = 0.f;
 static float delta_time = 0.f;
 
 namespace Polygame {
 	static std::vector<std::shared_ptr<Object>> objects;
+	static Renderer* renderer = nullptr;
 
 	void Init() {
 		Window::CreateWindow(1920, 1080, false);
-		Renderer::Init();
+		renderer = new Renderer(1920, 1080);
 	}
 
 	void Init(uint32_t window_width, uint32_t window_height, bool fullscreen) {
 		Window::CreateWindow(window_width, window_height, fullscreen);
-		Renderer::Init();
+		renderer = new Renderer(window_width, window_height);
 	}
 
 	void Start()
 	{
-		while (Window::IsWindowOpen())
-		{
+		while (Window::IsWindowOpen()) {
 			Tick();
 		}
 	}
@@ -38,16 +37,23 @@ namespace Polygame {
 		delta_time = GetDeltaTime();
 		glfwPollEvents();
 		
+		// Tick and/or delete objects and add them to the render queue if visible
 		for (int i = 0; i < objects.size(); i++) {
 			auto& object = objects[i];
-			object->Tick(delta_time);
 
 			if (object->ShouldDelete()) {
 				objects.erase(objects.begin() + i);
+				continue;
+			}
+
+			object->Tick(delta_time);
+
+			if (object->GetVisibility() == true) {
+				renderer->AddDrawObject(object->GetDrawInfo());
 			}
 		}
 
-		Renderer::Render();
+		renderer->Render();
 		Window::SwapBuffers();
 	}
 
@@ -57,7 +63,7 @@ namespace Polygame {
 			std::cout << "OpenGL Error Code: " << glGetError() << std::endl;
 		}
 
-		Renderer::Deinit();
+		delete renderer;
 		Window::CloseWindow();
 	}
 
